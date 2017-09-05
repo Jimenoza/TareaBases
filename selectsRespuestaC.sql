@@ -15,14 +15,23 @@ select P.TITULO_PUESTO from puesto P
         on H.ID_PUESTO=P.ID_PUESTO
     where extract(year from sysdate) - extract( year from H.FECHA_INICIO) <= 1;
 
-select D.NOMBRE_DEPARTAMENTO, count(E.ID_EMPLEADO) as CantidadEmpleados from EMPLEADO E
-    inner join DEPARTAMENTO D
-        on D.ID_DEPARTAMENTO=E.ID_DEPARTAMENTO
-    group by D.NOMBRE_DEPARTAMENTO;
-
-select L.Direccion, L.ciudad, L.provincia, count(E.ID_EMPLEADO) as CantidadEmpleados from EMPLEADO E
+-- numero 8 
+-- editar el numero 3 por algun otro numero especificado
+select L.Direccion, L.ciudad, L.provincia, P.NOMBRE_PAIS, count(E.ID_EMPLEADO) as CantidadEmpleados from EMPLEADO E
     inner join DEPARTAMENTO D
         on D.ID_DEPARTAMENTO=E.ID_DEPARTAMENTO
     inner join LOCALIZACION L 
         on L.ID_LOCALIZACION=D.ID_LOCALIZACION
-    group by L.provincia;
+    inner join PAIS P
+        on L.ID_PAIS=P.ID_PAIS
+    group by L.Direccion, L.ciudad, L.provincia, P.NOMBRE_PAIS
+    having count(E.ID_EMPLEADO) < 3;
+    
+-- numero 9
+-- editar el numero 3 por algun otro numero
+select H.nombre, Empleados from (select E.ID_GERENTE, count(ID_GERENTE) as Empleados from EMPLEADO E
+    group by E.ID_GERENTE) E
+    inner join Empleado H 
+        on H.ID_EMPLEADO=E.ID_GERENTE
+    where Empleados > 3;
+        
