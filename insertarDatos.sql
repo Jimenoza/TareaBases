@@ -82,7 +82,23 @@ select TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),
 (select ID_DEPARTAMENTO from DEPARTAMENTO where NOMBRE_DEPARTAMENTO = 'Computacion'),
 (select ID_PUESTO from PUESTO where TITULO_PUESTO = 'Ingeniero Computacion') from dual;
 
+insert into EMPLEADO (NOMBRE, APELLIDO, EMAIL, TELEFONO, FECHA_CONTRATACION,
+SALARIO, POR_COMISION, ID_PUESTO, ID_GERENTE, ID_DEPARTAMENTO)
+values ('Menor', 'QueUnAno', 'mucho@hotmail.com', 28832222, 
+TO_DATE('2017/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 12500, 10, 106, 1, 100);
 
+insert into HISTORIAL_PUESTO (FECHA_INICIO, ID_EMPLEADO, ID_DEPARTAMENTO, ID_PUESTO)
+values (TO_DATE('2017/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1000000020, 1020, 106);
+
+insert into HISTORIAL_PUESTO (FECHA_INICIO, ID_EMPLEADO, ID_DEPARTAMENTO, ID_PUESTO)
+values (TO_DATE('2015/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1000000004, 1020, 106);
+
+insert into HISTORIAL_PUESTO (FECHA_INICIO, ID_EMPLEADO, ID_DEPARTAMENTO, ID_PUESTO)
+values (TO_DATE('2014/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1000000003, 1020, 106);
+
+update EMPLEADO set ID_DEPARTAMENTO = 1020 where ID_PUESTO=106;
+
+delete from HISTORIAL_PUESTO;
 select * from Puesto;
 select * from LOCALIZACION;
 select * from REGION;
