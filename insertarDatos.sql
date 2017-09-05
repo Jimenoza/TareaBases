@@ -76,6 +76,11 @@ SALARIO, POR_COMISION, ID_PUESTO, ID_GERENTE, ID_DEPARTAMENTO)
 values ('Juan3', 'Carlos', 'mucho@hotmail.com', 28832222, 
 TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 12500, 10, 106, 1, 100);
 
+insert into HISTORIAL_PUESTO (FECHA_INICIO, ID_EMPLEADO, ID_DEPARTAMENTO, ID_PUESTO)
+select TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),
+(select ID_EMPLEADO from EMPLEADO where NOMBRE = 'Juan' and APELLIDO = 'Carlos'),
+(select ID_DEPARTAMENTO from DEPARTAMENTO where NOMBRE_DEPARTAMENTO = 'Computacion'),
+(select ID_PUESTO from PUESTO where TITULO_PUESTO = 'Ingeniero Computacion') from dual;
 
 
 select * from Puesto;
