@@ -1,8 +1,4 @@
 
-select extract(year from sysdate) as only_day from dual;
-select * from EMPLEADO;
-
-
 -- numero 6
 select E.Nombre from empleado E 
 where  
