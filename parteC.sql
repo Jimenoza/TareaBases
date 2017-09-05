@@ -9,3 +9,9 @@ inner join (
   where por_comision != 0
   group by id_departamento ) depart
 on depart.id_departamento = JVARGAS.departamento.id_departamento;
+
+select JVARGAS.historial_puesto.id_empleado,nombre ,apellido, fecha_inicio from JVARGAS.historial_puesto
+inner join JVARGAS.empleado on JVARGAS.historial_puesto.id_empleado = JVARGAS.empleado.id_empleado
+where extract(year from fecha_inicio) = extract(year from sysdate);
+
+select nombre, apellido, (trunc(sysdate) - trunc(fecha_contratacion)) as  "DIAS" from JVARGAS.empleado;
